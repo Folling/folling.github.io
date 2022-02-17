@@ -1,0 +1,3 @@
+[submodule "default/themes/binario"]
+	path = default/themes/binario
+	url = https://github.com/vimux/binario
