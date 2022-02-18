@@ -11,7 +11,7 @@ body {
 #page {
   display: grid;
   grid-template-columns: 19.1% 61.8% 19.1%;
-  grid-template-rows: 60px auto;
+  grid-template-rows: 50px auto;
   height: 100vh;
   overflow: auto;
 }
@@ -68,10 +68,9 @@ body {
 #search_input {
   display: flex;
   flex-direction: row;
-  margin-left: auto;
   border-bottom: 1px solid #CDCDCD;
-  width: 100%;
   align-self: center;
+  margin: 0px 10px;
 }
 
 #search_input_field {
