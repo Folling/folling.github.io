@@ -1,0 +1,11 @@
+@mixin border ($style,  $sides...){
+    @if ($style != "") {
+        @if ($sides == "") {
+            border: $style;
+        } @else {
+            @each $side in $sides {
+                border-#{$side}: $style;
+            }
+        }
+    }
+}

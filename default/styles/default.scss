@@ -1,4 +1,5 @@
 @use "_variables.scss" as *;
+@use "_helpers.scss" as *;
 
 * {
     color: $text;
@@ -25,7 +26,7 @@ body {
     grid-template-columns: 19.1% 61.8% 19.1%;
     grid-column-end: span 3;
     background-color: $dark;
-    z-index:  1;
+    z-index: 1;
     border-bottom: 1px solid black;
 }
 
@@ -36,6 +37,7 @@ body {
     font-weight: bold;
     margin: 0px 10px;
     align-self: center;
+    overflow: hidden;
 }
 
 #header_container {
@@ -45,6 +47,8 @@ body {
 }
 
 .tl_menu_item {
+    margin: 0px;
+    height: 100%;
     font-size: 16px;
     font-weight: bold;
     align-self: center;
@@ -52,18 +56,76 @@ body {
     flex-direction: row;
     column-gap: 5px;
     cursor: pointer;
-}
 
-.tl_menu_item i {
-    text-align: center;
-    height: fit-content;
-    align-self: center;
-}
+    i {
+        text-align: center;
+        height: fit-content;
+        align-self: center;
+    }
 
-.tl_menu_item:hover {
-    color: $contrast;
-    * {
+    &:hover {
         color: $contrast;
+        p {
+            color: $contrast;
+        }
+    }
+
+    p {
+        margin: 0px;
+        width: fit-content;
+        align-self: center;
+    }
+}
+
+.dropdown {
+    display: inline-block;
+
+    &:hover {
+        .dropdown_content {
+            display: flex;
+            flex-direction: column;
+            padding: 0px 8px;
+            row-gap: 8px;
+        }
+    }
+}
+
+.dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: $dark;
+    min-width: 160px;
+    height: fit-content;
+    @include border(1px solid black, left, bottom, right);
+    box-shadow: 0px 0px 10px 5px black;
+    z-index: -1;
+    clip-path: inset(0px -20px -20px -20px);
+
+    a {
+        align-self: center;
+        padding-top: 5px;
+        width: 100%;
+        height: 25px;
+
+        &:hover {
+            color: $contrast;
+        }
+    }
+
+    hr {
+        width: 100%;
+        margin-top: -4px;
+        margin-bottom: -4px;
+        border: 1px dotted $text;
+        border-style: none none dotted; 
+    }
+
+    &:before, &:after {
+        content: " ";
+        height: 100%;
+        position: absolute;
+        top: 0;
+        width: 15px;
     }
 }
 
@@ -86,6 +148,10 @@ body {
 
 #search_input:focus-within {
     border-bottom: 1px solid $contrast;
+
+    #search_input_icon {
+        color: $contrast;
+    }
 }
 
 #search_input_icon {
