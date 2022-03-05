@@ -1,5 +1,6 @@
 * {
   color: #CDCDCD;
+  font-family: "monospace";
 }
 
 body {
@@ -26,11 +27,16 @@ body {
   z-index: 1;
   border-bottom: 1px solid black;
 }
+#header.scrolled_page {
+  box-shadow: 0px 0px 20px 15px black;
+  z-index: 1;
+  clip-path: inset(0px 0px -400000px -20px);
+}
 
 #header_title_label {
   grid-column-start: 1;
   width: fit-content;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
   margin: 0px 10px;
   align-self: center;
@@ -39,14 +45,15 @@ body {
 
 #header_container {
   grid-column-start: 2;
+  justify-self: center;
   display: flex;
-  column-gap: 20px;
+  column-gap: 40px;
 }
 
 .tl_menu_item {
   margin: 0px;
   height: 100%;
-  font-size: 16px;
+  font-size: 24px;
   font-weight: bold;
   align-self: center;
   display: flex;
@@ -76,13 +83,13 @@ body {
 }
 .dropdown:hover .dropdown_content {
   display: flex;
-  flex-direction: column;
-  padding: 0px 8px;
-  row-gap: 8px;
 }
 
 .dropdown_content {
   display: none;
+  flex-direction: column;
+  padding: 0px 10px;
+  margin-left: -10px;
   position: absolute;
   background-color: #1C1F26;
   min-width: 160px;
@@ -96,9 +103,11 @@ body {
 }
 .dropdown_content a {
   align-self: center;
-  padding-top: 5px;
+  padding: 5px 0px;
+  margin-bottom: 10px;
   width: 100%;
   height: 25px;
+  text-decoration: none;
 }
 .dropdown_content a:hover {
   color: #9CB9FF;
@@ -117,6 +126,9 @@ body {
   top: 0;
   width: 15px;
 }
+.dropdown_content .tl_menu_item {
+  padding: 10px;
+}
 
 #search_input {
   display: flex;
@@ -134,6 +146,9 @@ body {
   background: none;
   outline: none;
 }
+#search_input_field ::placeholder::before {
+  content: "";
+}
 
 #search_input:focus-within {
   border-bottom: 1px solid #9CB9FF;
@@ -143,28 +158,34 @@ body {
 }
 
 #search_input_icon {
-  font-size: 18px;
+  font-size: 32px;
   margin-right: 10px;
   margin-top: 2px;
 }
 
-#menu_icon {
+.menu_icon {
   font-size: 32px;
 }
 
 #content {
   display: grid;
+  justify-self: center;
   grid-column-end: span 3;
-  grid-template-columns: 19.1% 61.8% 19.1%;
   flex: 1 0;
 }
 
 #content_container {
   padding: 0px 15px;
+  max-width: 80em;
   grid-column-start: 2;
-  height: fit-content;
+  min-height: fit-content;
   background-color: #2A333D;
   box-shadow: 0px 0px 50px 10px black;
+}
+
+#footer_note {
+  font-size: 18px;
+  text-align: center;
 }
 
 /*# sourceMappingURL=default.css.map */
