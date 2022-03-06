@@ -10,21 +10,6 @@
 <script src="./scripts/main.js"></script>
 </head>
 <body>
-<script>
-    var bfr = '';
-setInterval(function () {
-    fetch(window.location).then((response) => {
-        return response.text();
-    }).then(r => {
-        if (bfr != '' && bfr != r) {
-            window.location.reload();
-        }
-        else {
-            bfr = r;
-        }
-    });
-}, 10);
-</script>
 <div id="page">
     <div id="header">
         <p id="header_title_label">Rewrites Are Bliss</p>
@@ -40,7 +25,7 @@ setInterval(function () {
                     <i class="menu_icon fa-solid fa-caret-down"></i>
                 </div>
                 <div class="dropdown_content tl_menu_item">
-                    <a href="content/posts/alloy/index.html">Alloy</a>
+                    <a href="content/projects/alloy/index.html">Alloy</a>
                     <a>Ikarus</a>
                 </div>
             </div>

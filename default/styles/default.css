@@ -59,7 +59,6 @@ body {
   margin: 0px;
   height: 100%;
   font-size: 24px;
-  font-weight: bold;
   align-self: center;
   display: flex;
   flex-direction: row;
@@ -67,6 +66,7 @@ body {
   cursor: pointer;
 }
 .tl_menu_item i {
+  font-size: 20px;
   text-align: center;
   height: fit-content;
   align-self: center;
@@ -74,7 +74,7 @@ body {
 .tl_menu_item:hover {
   color: #9CB9FF;
 }
-.tl_menu_item:hover p {
+.tl_menu_item:hover p, .tl_menu_item:hover i {
   color: #9CB9FF;
 }
 .tl_menu_item p {
