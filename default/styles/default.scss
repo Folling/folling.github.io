@@ -3,7 +3,6 @@
 
 * {
     color: $text;
-    font-family: "monospace";
 }
 
 body {
@@ -14,18 +13,20 @@ body {
 
 #page {
     display: grid;
-    grid-template-columns: 19.1% 61.8% 19.1%;
+    grid-template-columns: 1fr 60em 1fr;
     grid-template-rows: 50px auto;
-    height:  100vh;
+    height: 100vh;
     overflow: auto;
 }
 
 #header {
     position: sticky;
-    top: 0px;
     display: grid;
-    grid-template-columns: 19.1% 61.8% 19.1%;
+    grid-template-columns: 1fr 60em 1fr;
+    top: 0px;
+    grid-column-start: 1;
     grid-column-end: span 3;
+    grid-row-start: 1;
     background-color: $dark;
     z-index: 1;
     border-bottom: 1px solid black;
@@ -39,16 +40,20 @@ body {
 
 #header_title_label {
     grid-column-start: 1;
+    grid-row-start: 1;
     width: fit-content;
     font-size: 32px;
     font-weight: bold;
-    margin: 0px 10px;
+    margin: 0px;
+    margin-right: 10px;
     align-self: center;
+    justify-self: right;
     overflow: hidden;
 }
 
 #header_container {
     grid-column-start: 2;
+    grid-row-start: 1;
     justify-self: center;
     display: flex;
     column-gap: 40px;
@@ -146,10 +151,15 @@ body {
 
 #search_input {
     display: flex;
+    grid-row-start: 1;
+    grid-column-start: 3;
     flex-direction: row;
     border-bottom: 1px solid $text;
     align-self: center;
-    margin: 0px 10px;
+    justify-self: left;
+    margin: 0px;
+    width: 20em;
+    margin-left: 10px;
 }
 
 #search_input_field {
@@ -174,7 +184,7 @@ body {
 }
 
 #search_input_icon {
-    font-size: 32px;
+    font-size: 20px;
     margin-right: 10px;
     margin-top: 2px;
 }
@@ -184,22 +194,20 @@ body {
 }
 
 #content {
-    display: grid;
     justify-self: center;
-    grid-column-end: span 3;
-    flex: 1 0;
-}
-
-#content_container {
-    padding: 0px 15px;
-    max-width: 80em;
     grid-column-start: 2;
+    flex: 1 0;
+    padding: 0px 15px;
     min-height: fit-content;
     background-color: $light;
     box-shadow: 0px 0px 50px 10px black;
 }
 
+#content_container {
+
+}
+
 #footer_note {
-    font-size: 18px; 
+    font-size: 14px; 
     text-align: center
 }
