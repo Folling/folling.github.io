@@ -117,23 +117,68 @@ fn main() -> Result<()> {
     for i in 0..sites_tree.root_count() {
         let root = sites_tree
             .get(i)
-            .ok_or(anyhow!("sites tree contained fewer items than root_count"))?
-            .val();
+            .ok_or(anyhow!("sites tree contained fewer items than root_count"))?;
 
-        write!(
-            header,
-            concat!(
-                "            <div class=\"tl_menu_item\">\n",
-                "               <p>{}</p>\n",
-                "            </div>\n"
-            ),
-            capitalise(
-                root.file_name()
-                    .map(|v| v.to_str())
-                    .flatten()
-                    .ok_or(anyhow!("unable to obtain file name from site: {}", root.canonicalize()?.display()))?
-            )
-        )?;
+        let site_name = capitalise(root.val().file_name().map(|v| v.to_str()).flatten().ok_or(anyhow!(
+            "unable to obtain file name from site: {}",
+            root.val().canonicalize()?.display()
+        ))?);
+
+        if let Some((start, end)) = root.children_anchors() {
+            #[rustfmt::skip]
+            write!(
+                header,
+                concat!(
+                    "            <div class=\"dropdown tl_menu_item\">\n",
+                    "                <div class=\"tl_menu_item\">\n",
+                    "                    <div class=\"tl_menu_item\">\n",
+                    "                        <p class=\"\">{}</p>\n",
+                    "                    </div>\n",
+                    "                    <i class=\"menu_icon fa-solid fa-caret-down\"></i>\n",
+                    "                </div>\n",
+                    "                <div class=\"dropdown_content tl_menu_item\">\n",
+                ),
+                site_name
+            )?;
+
+            for i in start..end {
+                let child = sites_tree.get(i).ok_or(anyhow!("sites tree didn't contain child-site at {}", i))?;
+
+                if child.children_anchors().is_some() {
+                    warn!(
+                        "Child {:?} has children of its own, this isn't supported at the moment",
+                        child.val()
+                    );
+                }
+
+                let child_name = child.val().file_name().map(|v| v.to_str()).flatten().ok_or(anyhow!(
+                    "unable to obtain file name from site: {}",
+                    child.val().canonicalize()?.display()
+                ))?;
+
+                let cap_child_name = capitalise(child_name);
+
+                write!(
+                    header,
+                    "                    <a href=\"{}{}\">{}</a>\n",
+                    "../".repeat(child.layer() + 1),
+                    root.val().join(child_name).join("index.html").display(),
+                    cap_child_name
+                )?;
+            }
+
+            write!(header, concat!("                </div>\n", "            </div>\n",))?;
+        } else {
+            write!(
+                header,
+                concat!(
+                    "            <div class=\"tl_menu_item\">\n",
+                    "               <p>{}</p>\n",
+                    "            </div>\n"
+                ),
+                site_name
+            )?;
+        }
     }
 
     let post_header = concat!(

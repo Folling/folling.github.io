@@ -71,7 +71,9 @@ impl<T> ImmutableTree<T> {
                     ret
                 }));
 
-                item.children_anchors = Some((start, idx));
+                if start != idx {
+                    item.children_anchors = Some((start, idx));
+                }
             }
         }
 
