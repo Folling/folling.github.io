@@ -5,3 +5,5 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.55"
+simplelog = "0.11.2"
+log = "0.4.14"
